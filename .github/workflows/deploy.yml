@@ -60,7 +60,10 @@ jobs:
         if-no-files-found: 'error'
 
     - name: Build with Gradle
-      run: ./gradlew clean build -x test
+      run: |
+        chmod +x gradlew
+        ./gradlew -version
+        ./gradlew :api:build -x test
       shell: bash
       
     - name: AWS credential 설정
