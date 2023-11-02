@@ -13,7 +13,8 @@ import lombok.Getter;
 public enum SuccessCode {
 
 	// meeting
-	MEETING_CREATE_SUCCESS(CREATED, "회의 생성 성공");
+	MEETING_CREATE_SUCCESS(CREATED, "회의 생성 성공"),
+	MEETING_GET_SUCCESS(OK, "회의 조회 성공");
 
 
 	private final HttpStatus status;

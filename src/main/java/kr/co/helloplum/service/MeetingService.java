@@ -1,7 +1,10 @@
 package kr.co.helloplum.service;
 
+import kr.co.helloplum.dto.MeetingGetResponseDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.mongodb.core.MongoTemplate;
+import org.springframework.data.mongodb.core.query.Criteria;
+import org.springframework.data.mongodb.core.query.Query;
 import org.springframework.stereotype.Service;
 
 import kr.co.helloplum.domain.Meeting;
@@ -31,5 +34,14 @@ public class MeetingService {
 
 		Meeting savedMeeting = mongoTemplate.insert(meeting);
 		return MeetingCreateResponseDto.of(meeting);
+	}
+
+	public MeetingGetResponseDto getMeeting(String meetingId) {
+		Meeting meeting = mongoTemplate.findOne(
+				Query.query(Criteria.where("_id").is(meetingId)),
+				Meeting.class
+		);
+
+		return MeetingGetResponseDto.of(meeting);
 	}
 }
