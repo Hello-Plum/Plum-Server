@@ -14,7 +14,8 @@ public enum SuccessCode {
 
 	// meeting
 	MEETING_CREATE_SUCCESS(CREATED, "회의 생성 성공"),
-	MEETING_GET_SUCCESS(OK, "회의 조회 성공");
+	MEETING_GET_SUCCESS(OK, "회의 조회 성공"),
+	MEETING_POST_OWNER_CHECK_SUCCESS(OK, "방장 확인 성공");
 
 
 	private final HttpStatus status;

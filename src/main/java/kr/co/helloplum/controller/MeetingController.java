@@ -3,6 +3,8 @@ package kr.co.helloplum.controller;
 import java.time.LocalDate;
 
 import kr.co.helloplum.dto.MeetingGetResponseDto;
+import kr.co.helloplum.dto.MeetingOwnerPostRequestDto;
+import kr.co.helloplum.dto.MeetingOwnerPostResponseDto;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -39,5 +41,12 @@ public class MeetingController {
 	public ApiResponse<MeetingGetResponseDto> getMeeting(@PathVariable String meetingId) {
 		MeetingGetResponseDto responseDto = meetingService.getMeeting(meetingId);
 		return ApiResponse.success(SuccessCode.MEETING_GET_SUCCESS, responseDto);
+	}
+
+	@PostMapping("/{meetingId}/owner")
+	public ApiResponse<MeetingOwnerPostResponseDto> checkOwner(@PathVariable String meetingId
+			, @RequestBody MeetingOwnerPostRequestDto requestDto) {
+		MeetingOwnerPostResponseDto responseDto = meetingService.checkOwner(meetingId, requestDto);
+		return ApiResponse.success(SuccessCode.MEETING_POST_OWNER_CHECK_SUCCESS, responseDto);
 	}
 }

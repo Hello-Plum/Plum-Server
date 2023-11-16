@@ -1,6 +1,8 @@
 package kr.co.helloplum.service;
 
 import kr.co.helloplum.dto.MeetingGetResponseDto;
+import kr.co.helloplum.dto.MeetingOwnerPostRequestDto;
+import kr.co.helloplum.dto.MeetingOwnerPostResponseDto;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.mongodb.core.MongoTemplate;
 import org.springframework.data.mongodb.core.query.Criteria;
@@ -41,7 +43,14 @@ public class MeetingService {
 				Query.query(Criteria.where("_id").is(meetingId)),
 				Meeting.class
 		);
-
 		return MeetingGetResponseDto.of(meeting);
+	}
+
+	public MeetingOwnerPostResponseDto checkOwner(String meetingId, MeetingOwnerPostRequestDto requestDto) {
+		Meeting meeting = mongoTemplate.findOne(
+				Query.query(Criteria.where("_id").is(meetingId)),
+				Meeting.class
+		);
+		return MeetingOwnerPostResponseDto.of(requestDto.getPassword().equals(meeting.getPassword()));
 	}
 }
