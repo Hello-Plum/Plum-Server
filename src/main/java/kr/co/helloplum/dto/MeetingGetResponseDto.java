@@ -1,6 +1,9 @@
 package kr.co.helloplum.dto;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.Set;
 import kr.co.helloplum.domain.Meeting;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -17,7 +20,9 @@ public class MeetingGetResponseDto {
     private String host;
     private String password;
     private String info;
-    private boolean isConfirmed;
+    private boolean confirmed;
+    private boolean period;
+    private Set<Integer> selectedWeek;
 
     public static MeetingGetResponseDto of(Meeting meeting) {
         return new MeetingGetResponseDto(
@@ -30,7 +35,17 @@ public class MeetingGetResponseDto {
                 meeting.getHost(),
                 meeting.getPassword(),
                 meeting.getInfo(),
-                meeting.isConfirmed()
+                meeting.isConfirmed(),
+                !meeting.getStartDate().equals(meeting.getEndDate()),
+                convertDateToWeekNumber(meeting.getStartDate(), meeting.getEndDate())
         );
+    }
+
+    private static Set<Integer> convertDateToWeekNumber(LocalDate startDate, LocalDate endDate) {
+        Set<Integer> weekNumbers = new HashSet<>();
+        for (LocalDate date = startDate; date.isBefore(endDate) || date.equals(endDate); date = date.plusDays(1)) {
+            weekNumbers.add(date.getDayOfWeek().getValue() - 1);
+        }
+        return weekNumbers;
     }
 }
