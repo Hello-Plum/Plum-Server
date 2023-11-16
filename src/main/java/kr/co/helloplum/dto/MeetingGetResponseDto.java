@@ -8,6 +8,7 @@ import lombok.Getter;
 @Getter
 @AllArgsConstructor
 public class MeetingGetResponseDto {
+    private String id;
     private String name;
     private LocalDate startDate;
     private LocalDate endDate;
@@ -21,6 +22,7 @@ public class MeetingGetResponseDto {
     public static MeetingGetResponseDto of(Meeting meeting) {
         return new MeetingGetResponseDto(
                 meeting.get_id(),
+                meeting.getName(),
                 meeting.getStartDate(),
                 meeting.getEndDate(),
                 meeting.getPlace(),
