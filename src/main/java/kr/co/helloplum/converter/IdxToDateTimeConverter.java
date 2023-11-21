@@ -10,11 +10,16 @@ public class IdxToDateTimeConverter {
     public static final int END = 1;
 
     public static LocalDateTime convert(int idx, LocalDate startDate, int timeFlag) {
-        int dayIdx = idx / 34;  // 0~6
-        int timeIdx = idx % 34; // 0~33
+        int dayIdx = idx / 34;
+        int timeIdx = idx % 34;
+
+        int plusDay = (dayIdx + 1) - startDate.getDayOfWeek().getValue();
+        if (plusDay < 0) plusDay += 7;
+
+        System.out.println(startDate);
 
         return startDate.atStartOfDay()
-                .plusDays(dayIdx)
+                .plusDays(plusDay)
                 .plusHours(TIME_PREFIX)
                 .plusMinutes((timeIdx + timeFlag) * 30L);
     }
