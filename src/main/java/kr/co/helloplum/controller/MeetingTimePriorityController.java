@@ -17,13 +17,13 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequiredArgsConstructor
-@RequestMapping("api/v1/meeting")
+@RequestMapping("api/v1/meeting/{meetingId}/time")
 @Slf4j
 public class MeetingTimePriorityController {
 
     private final MeetingTimePriorityService meetingTimePriorityService;
 
-    @PostMapping("/{meetingId}/time")
+    @PostMapping("")
     public ApiResponse<List<MeetingTimePriorityCreateResponseDto>> createMeetingTimePriority(@PathVariable String meetingId,
                                                                                        @RequestBody @Valid MeetingTimePriorityCreateRequestDto requestDto) {
         List<MeetingTimePriorityCreateResponseDto> responseDto = meetingTimePriorityService.createMeetingTimePriority(meetingId, requestDto);
