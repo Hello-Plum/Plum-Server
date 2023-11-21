@@ -29,6 +29,7 @@ public class MeetingTimePriority {
 		Assert.notNull(endTime, "endTime must not be null");
 		Assert.notNull(priority, "priority must not be null");
 
+		this.meetingId = meetingId;
 		this.name = name;
 		this.startTime = startTime;
 		this.endTime = endTime;
