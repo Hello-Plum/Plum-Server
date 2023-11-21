@@ -21,34 +21,9 @@ public enum ErrorCode {
 	ALREADY_DELETED(BAD_REQUEST, "이미 삭제된 값입니다"),
 	BAD_PARAMETER(BAD_REQUEST, "요청 파라미터가 잘못되었습니다."),
 	BAD_PARAMETER_TYPE(BAD_REQUEST, "지원하지 않는 파라미터 형식입니다."),
+
 	// 커뮤니티
-	NO_FORUM(BAD_REQUEST, "존재하지 않는 게시판입니다"),
-	NO_ARTICLE_ID(BAD_REQUEST, "존재하지 않는 게시물 id 입니다"),
-	// 쪽지
-	NO_ROOM(BAD_REQUEST, "쪽지방이 없습니다"),
-	NO_ROOM_MEMBER(BAD_REQUEST, "쪽지방에 회원이 없습니다."),
-	// 파일
-	BAD_FILE_NAME(BAD_REQUEST, "파일 이름이 올바르지 않습니다."),
-	BAD_FILE_EXTENSION(BAD_REQUEST, "지원하지 않는 파일 형식입니다."),
-	// 인증
-	INCONSISTENT_CODE(BAD_REQUEST, "인증정보가 일치하지 않습니다."),
-	DUPLICATE_EMAIL(BAD_REQUEST, "이미 가입된 유저입니다."),
-	SIGNUP_UNAVAILABLE_EMAIL(BAD_REQUEST, "회원가입이 불가능한 이메일입니다."),
-	ALREADY_ACCEPTANCE(BAD_REQUEST, "이미 가입 승인한 유저입니다."),
-	ALREADY_DENY(BAD_REQUEST, "이미 가입 거절한 유저입니다."),
-	ALREADY_WITHDRAWN(BAD_REQUEST, "이미 탈퇴한 유저입니다."),
-	NOT_ACCEPTED(BAD_REQUEST, "승인되지 않은 유저입니다."),
-	DENYED_USER(BAD_REQUEST, "가입 거절된 유저입니다"),
-	// 메일
-	EMAIL_BAD_REQUEST(BAD_REQUEST, "이메일 형식이 유효하지 않습니다."),
-	EMAIL_SEND_FAIL(BAD_REQUEST, "이메일을 전송할 수 없습니다."),
-	NO_EMAIL_CODE(BAD_REQUEST, "해당 이메일에 유효한 인증정보가 없습니다."),
-	TOO_MANY_EMAIL_REQUEST(BAD_REQUEST, "메일 인증 요청은 하루에 5회까지 가능합니다."),
-	// 프로필
-	DUPLICATE_NICKNAME(BAD_REQUEST, "이미 사용 중인 닉네임입니다."),
-	NO_PROFILE(BAD_REQUEST, "존재하지 않는 프로필입니다"),
-	// 소속
-	SCHOOL_NOT_FOUND_BY_CODE(BAD_REQUEST, "존재하지 않는 학교 코드입니다."),
+	ILLEGAL_PRIORITY_VALUE(BAD_REQUEST, "우선순위 값이 잘못되었습니다."),
 
 	/* 401 UNAUTHORIZED: 인증 실패 */
 	UNAUTHORIZED_USER(UNAUTHORIZED, "만료되었거나 잘못된 토큰입니다. 토큰을 확인해주세요."),

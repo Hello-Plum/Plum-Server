@@ -36,15 +36,26 @@ public class MeetingTimePriorityService {
         LocalDate startDate = meeting.getStartDate();
         List<MeetingTimePriority> meetingTimePriorities = requestDto.getAvailableTimes().stream().map(availabeTimeDto -> {
             MeetingTimePriority meetingTimePriority = MeetingTimePriority.builder()
-                    .meetingId(meetingId)
+                    .meeting(meeting)
                     .name(requestDto.getName())
                     .startTime(IdxToDateTimeConverter.convert(availabeTimeDto.getStartTimeIdx(), startDate, IdxToDateTimeConverter.START))
                     .endTime(IdxToDateTimeConverter.convert(availabeTimeDto.getEndTimeIdx(), startDate, IdxToDateTimeConverter.END))
-                    .priority(availabeTimeDto.getPriority())
                     .build();
 
             return mongoTemplate.insert(meetingTimePriority);
         }).toList();
+
+        requestDto.getPriorities().forEach(priority -> {
+            MeetingTimePriority meetingTimePriority = meetingTimePriorities.stream()
+                    .filter(meetingTime ->
+                            meetingTime.getStartTime().equals(IdxToDateTimeConverter.convert(priority, startDate, IdxToDateTimeConverter.START))
+                    )
+                    .findFirst()
+                    .orElseThrow(() -> new BadRequestException(ErrorCode.ILLEGAL_PRIORITY_VALUE));
+
+            meetingTimePriority.setPriority(requestDto.getPriorities().indexOf(priority) + 1);
+            mongoTemplate.save(meetingTimePriority);
+        });
 
         return meetingTimePriorities.stream().map(MeetingTimePriorityCreateResponseDto::of).toList();
     }

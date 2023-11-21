@@ -12,6 +12,8 @@ public class MeetingTimePriorityCreateRequestDto {
     @Size(max = 10, message = "The length of name must be under 10")
     private String name;
 
-    @Size(max = 3, message = "The length of availableTimes must be under 3")
     private List<AvailabeTimeDto> availableTimes;
+
+    @Size(max = 3, message = "The length of priorities must be under 3")
+    private List<Integer> priorities;
 }
