@@ -16,8 +16,6 @@ public class IdxToDateTimeConverter {
         int plusDay = (dayIdx + 1) - startDate.getDayOfWeek().getValue();
         if (plusDay < 0) plusDay += 7;
 
-        System.out.println(startDate);
-
         return startDate.atStartOfDay()
                 .plusDays(plusDay)
                 .plusHours(TIME_PREFIX)
