@@ -1,13 +1,9 @@
 package kr.co.helloplum.controller;
 
-import java.time.LocalDate;
-
 import kr.co.helloplum.dto.MeetingGetResponseDto;
 import kr.co.helloplum.dto.MeetingOwnerPostRequestDto;
 import kr.co.helloplum.dto.MeetingOwnerPostResponseDto;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -15,7 +11,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import kr.co.helloplum.common.statusCode.SuccessCode;
-import kr.co.helloplum.domain.Meeting;
 import kr.co.helloplum.dto.ApiResponse;
 import kr.co.helloplum.dto.MeetingCreateRequestDto;
 import kr.co.helloplum.dto.MeetingCreateResponseDto;

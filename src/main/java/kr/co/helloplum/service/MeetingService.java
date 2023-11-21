@@ -12,7 +12,6 @@ import org.springframework.stereotype.Service;
 import kr.co.helloplum.domain.Meeting;
 import kr.co.helloplum.dto.MeetingCreateRequestDto;
 import kr.co.helloplum.dto.MeetingCreateResponseDto;
-import kr.co.helloplum.repository.MeetingRepository;
 import lombok.RequiredArgsConstructor;
 
 @RequiredArgsConstructor
