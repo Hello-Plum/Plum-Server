@@ -9,8 +9,10 @@ import kr.co.helloplum.domain.Meeting;
 import kr.co.helloplum.domain.MeetingTimePriority;
 import kr.co.helloplum.dto.MeetingTimePriorityCreateRequestDto;
 import kr.co.helloplum.dto.MeetingTimePriorityCreateResponseDto;
+import kr.co.helloplum.dto.MeetingTimePriorityGetResponseDto;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Sort;
 import org.springframework.data.mongodb.core.MongoTemplate;
 import org.springframework.data.mongodb.core.query.Criteria;
 import org.springframework.data.mongodb.core.query.Query;
@@ -36,7 +38,7 @@ public class MeetingTimePriorityService {
         LocalDate startDate = meeting.getStartDate();
         List<MeetingTimePriority> meetingTimePriorities = requestDto.getAvailableTimes().stream().map(availabeTimeDto -> {
             MeetingTimePriority meetingTimePriority = MeetingTimePriority.builder()
-                    .meeting(meeting)
+                    .meetingId(meetingId)
                     .name(requestDto.getName())
                     .startTime(IdxToDateTimeConverter.convert(availabeTimeDto.getStartTimeIdx(), startDate, IdxToDateTimeConverter.START))
                     .endTime(IdxToDateTimeConverter.convert(availabeTimeDto.getEndTimeIdx(), startDate, IdxToDateTimeConverter.END))
@@ -58,5 +60,15 @@ public class MeetingTimePriorityService {
         });
 
         return meetingTimePriorities.stream().map(MeetingTimePriorityCreateResponseDto::of).toList();
+    }
+
+    public List<MeetingTimePriorityGetResponseDto> getMeetingTimePriorities(String meetingId) {
+        List<MeetingTimePriority> meetingTimePriorities = mongoTemplate.find(
+                Query.query(Criteria.where("meetingId").is(meetingId))
+                        .with(Sort.by(Sort.Direction.ASC, "name")),
+                MeetingTimePriority.class
+        );
+
+        return meetingTimePriorities.stream().map(MeetingTimePriorityGetResponseDto::of).toList();
     }
 }
