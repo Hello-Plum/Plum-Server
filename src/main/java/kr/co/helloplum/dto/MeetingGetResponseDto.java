@@ -17,6 +17,7 @@ public class MeetingGetResponseDto {
     private LocalDate endDate;
     private String place;
     private String placeDetail;
+    private String duration;
     private String host;
     private String password;
     private String info;
@@ -32,6 +33,7 @@ public class MeetingGetResponseDto {
                 meeting.getEndDate(),
                 meeting.getPlace(),
                 meeting.getPlaceDetail(),
+                meeting.getDuration(),
                 meeting.getHost(),
                 meeting.getPassword(),
                 meeting.getInfo(),
