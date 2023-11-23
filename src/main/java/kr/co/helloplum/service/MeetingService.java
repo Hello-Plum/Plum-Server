@@ -28,6 +28,7 @@ public class MeetingService {
 			.endDate(requestDto.getEndDate())
 			.place(requestDto.getPlace())
 			.placeDetail(requestDto.getPlaceDetail())
+			.duration(requestDto.getDuration())
 			.host(requestDto.getHost())
 			.password(requestDto.getPassword())
 			.info(requestDto.getInfo())

@@ -13,6 +13,7 @@ public class MeetingCreateRequestDto {
 	private LocalDate endDate;
 	private String place;
 	private String placeDetail;
+	private String duration;
 	private String host;
 	private String password;
 	private String info;

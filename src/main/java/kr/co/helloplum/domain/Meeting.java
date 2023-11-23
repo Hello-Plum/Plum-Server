@@ -20,19 +20,21 @@ public class Meeting {
 	private LocalDate endDate;
 	private String place;
 	private String placeDetail;
+	private String duration;
 	private String host;
 	private String password;
 	private String info;
 	private boolean isConfirmed;
 
 	@Builder
-	public Meeting(String name, LocalDate startDate, LocalDate endDate, String place, String placeDetail
-		, String host, String password, String info) {
+	public Meeting(String name, LocalDate startDate, LocalDate endDate, String place, String placeDetail,
+				   String duration, String host, String password, String info) {
 		Assert.notNull(name, "name must not be null");
 		Assert.notNull(startDate, "startDate must not be null");
 		Assert.notNull(endDate, "endDate must not be null");
 		Assert.notNull(place, "place must not be null");
 		Assert.notNull(placeDetail, "placeDetail must not be null");
+		Assert.notNull(duration, "duration must not be null");
 		Assert.notNull(host, "host must not be null");
 		Assert.notNull(password, "password must not be null");
 		Assert.notNull(info, "info must not be null");
@@ -42,6 +44,7 @@ public class Meeting {
 		this.endDate = endDate;
 		this.place = place;
 		this.placeDetail = placeDetail;
+		this.duration = duration;
 		this.host = host;
 		this.password = password;
 		this.info = info;
